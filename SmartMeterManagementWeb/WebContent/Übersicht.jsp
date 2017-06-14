@@ -22,9 +22,39 @@
 </head>
 
 <body>
-	<button>SmartMeter hinzufügen</button>
 	<div id="main">
 		<h1>Gesamtübersicht</h1>
+
+		<div class="container">
+			<button id="addSM" type="button" class="btn btn-info "
+				data-toggle="modal" data-target="#myModal">SmartMeterhinzufügen</button>
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Modal Header</h4>
+						</div>
+						<div class="modal-body">
+							<form method="POST" action="übersicht">
+								<p class="column-sm-5">Kennung:</p>
+								<input class="column-sm-7" type="text" name="kennung" />
+								<p class="column-sm-5">Maximale Belastung:</p>
+								<input class="column-sm-7" type="number" min=50 max=100
+									name="maxStaerke" /><br>
+								<br> <input type="submit" value="hinzufügen" />
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
 		<div>
 			<a href="DE_02469237.html"> <img src="img/smartMeter.jpg">
 				<h4>Kennung:DE 02469237</h4>
@@ -37,7 +67,7 @@
 		</div>
 		<%
 			@SuppressWarnings("unchecked")
-			List<SmartMeter> smList = (List<SmartMeter>) request.getAttribute("kennung");
+			List<SmartMeter> smList = (List<SmartMeter>) request.getAttribute("sm");
 			if (smList != null) {
 				for (SmartMeter sm : smList) {
 		%>
@@ -50,55 +80,6 @@
 		%>
 
 	</div>
-
-	<div class="container">
-
-
-		<button id="addSM" type="button" class="btn btn-info" data-toggle="modal"
-			data-target="#myModal">Smart Meter hinzufügen</button>
-
-
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog ">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">SmartMeter hinzufügen</h4>
-					</div>
-					<div class="modal-body">
-						<form action="submit">
-							<ul>
-								<!--  Kennung  -->
-								<li><label for="kennung" class="col-sm-8">Kennung</label>
-									<div class="col-sm-4">
-										<input id="kennung" placeholder="AA 11111111" />
-									</div></li>
-								<!--  Zulässige Maximale Belastung  -->
-								<li><label for="maxBelastung" class="col-sm-8">Belastung</label>
-									<div class="col-sm-4">
-										<input id="maxBelastung" placeholder="50-100" />
-									</div></li>
-							
-						</form>
-
-					</div>
-					<div class="modal-footer">
-					<div>
-						<button type="button" class="btn btn-default col-sm-4" >Abbrechen</button>
-						<button type="submit" class="btn btn-default col-sm-4">Hinzufügen</button>
-					</div>
-					</div>
-				</ul>	
-				</div>
-
-			</div>
-		</div>
-
-	</div>
-
-
 
 
 </body>

@@ -38,3 +38,9 @@ li {
 	right:0px;
 	top:opx;
 }
+
+#addSM {
+	position: fixed;
+	right:0px;
+	top:0px;
+}
