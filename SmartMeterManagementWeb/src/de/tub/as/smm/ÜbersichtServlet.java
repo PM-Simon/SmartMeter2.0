@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.tub.as.smm.dao.SmartMeterDao;
+import de.tub.as.smm.dao.UserDao;
 import de.tub.as.smm.models.SmartMeter;
+import de.tub.as.smm.models.User;
 
 @WebServlet("/übersicht")
 public class ÜbersichtServlet extends HttpServlet {
@@ -19,11 +21,15 @@ public class ÜbersichtServlet extends HttpServlet {
 
 	@EJB
 	SmartMeterDao sm;
+	
+	@EJB
+	UserDao u;
+	
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		request.setAttribute("sm", sm.getAllSmartMeter());
 		request.getRequestDispatcher("/Übersicht.jsp").forward(request, response);
 	}
@@ -31,12 +37,22 @@ public class ÜbersichtServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		if(request.getParameter("kennung") != null){
 		String kennung = request.getParameter("kennung");
 		String maxStärke = request.getParameter("maxStaerke");
-
 		sm.persist(new SmartMeter(kennung, maxStärke));
-
+		System.out.println("sm");
+		
+		}else if(request.getParameter("name") != null){
+			String name = request.getParameter("name");
+			String passwort = request.getParameter("passwort");
+			u.anmelden();
+			u.persist(new User(name,passwort));
+			request.setAttribute("angemeldet", u.istAngemeldet());
+			
+		}
+		
+		
 		doGet(request, response);
 	}
 

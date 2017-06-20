@@ -18,9 +18,9 @@ public class SmartMeter implements Serializable {
 	@Id
 	@GeneratedValue
 	Long id;
-	String kennung;
-	String Stromspannung;
-	String maxStromstärke;
+	private String kennung;
+	private String Stromspannung;
+	private String maxStromstärke;
 
 	public SmartMeter() {
 	}
@@ -46,6 +46,12 @@ public class SmartMeter implements Serializable {
 		return Stromspannung;
 	}
 
+	@Column(name="ID")
+	public Long getId() {
+		return id;
+	}
+
+	
 	@Column(name = "Stromstärke")
 	public String getStromStärke() {
 		return maxStromstärke;

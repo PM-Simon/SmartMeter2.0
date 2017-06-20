@@ -40,10 +40,10 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
     	
         // Handle a new guest:
-        String name = request.getParameter("name");
-        if (name != null)
-            userDao.persist(new User(name));
-        
+//        String name = request.getParameter("name");
+//        if (name != null)
+//            userDao.persist(new User(name));
+//        
         // Display the list of guests:
         doGet(request, response);
     }

@@ -24,15 +24,16 @@
 <body>
 	<div id="main">
 		<h1>Gesamtübersicht</h1>
-
+		
+		<!-- SmartMeter hinzufügen -->
 		<div class="container">
 			<button id="addSM" type="button" class="btn btn-info "
-				data-toggle="modal" data-target="#myModal">SmartMeterhinzufügen</button>
-			<div class="modal fade" id="myModal" role="dialog">
+				data-toggle="modal" data-target="#myModal1">SmartMeterhinzufügen</button>
+			<div class="modal fade" id="myModal1" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Modal Header</h4>
+							<h4 class="modal-title">SmartMeterhinzufügen</h4>
 						</div>
 						<div class="modal-body">
 							<form method="POST" action="übersicht">
@@ -54,6 +55,39 @@
 			</div>
 
 		</div>
+		
+		<!-- Einloggen -->
+		<div class="container">
+			<button id="einloggen" type="button" class="btn btn-info "
+				data-toggle="modal" data-target="#myModal2">Anmelden</button>
+			<div class="modal fade" id="myModal2" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Anmelden</h4>
+						</div>
+						<div class="modal-body">
+							<form method="POST" action="übersicht">
+								<p class="column-sm-5">Name:</p>
+								<input class="column-sm-7" type="text" name="name" />
+								<p class="column-sm-5">Passwort</p>
+								<input class="column-sm-7" type="text" name="passwort" /><br>
+								<br> <input type="submit" value="Bestätigen"/>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		
+		
+		
 
 		<div>
 			<a href="DE_02469237.html"> <img src="img/smartMeter.jpg">
@@ -71,7 +105,10 @@
 			if (smList != null) {
 				for (SmartMeter sm : smList) {
 		%>
-		<a href="<%=sm.getKennung()%>"> <img src="img/smartMeter.jpg">
+		<a href=<%
+				System.out.println("YES!"); 
+				%>> 
+				<img src="img/smartMeter.jpg">
 			<h4><%=sm%></h4>
 		</a>
 		<%

@@ -14,6 +14,8 @@ import de.tub.as.smm.models.User;
  */
 @Stateless
 public class UserDao {
+	
+	private static boolean angemeldet = false;
 
 	// Injected database connection:
     @PersistenceContext private EntityManager em;
@@ -29,5 +31,15 @@ public class UserDao {
             "SELECT u FROM User u ORDER BY u.id", User.class);
         return query.getResultList();
     }
+    
+    
+    public void anmelden(){
+    	angemeldet = true;
+    }
+    
+    public boolean istAngemeldet(){
+    	return angemeldet;
+    }
+    
 
 }
